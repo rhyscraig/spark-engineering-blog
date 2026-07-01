@@ -3,11 +3,13 @@
 **Product:** The Spark Engineering Story (a blog documenting the journey of building
 Spark and the engineering principles discovered along the way).
 
-**This delivery (Product 1, slice 1):** *Produce, review, and publish ONE article
-automatically* — a complete production run through the Spark factory. Success is
-engineering coverage, not audience: plan → repo → generate → quality-check → build →
-publish → evidence → capability-debt → close. If it does those, it succeeded even if
-nobody reads it.
+**Production question (the objective):** *Can Spark produce one publishable engineering
+article using its current organisational capability, while recording every friction
+without immediately fixing it?* — a stronger, objective completion condition than "publish
+a blog." Success is **honest** engineering coverage, not audience and not
+coverage-for-coverage's-sake: only run a stage the product genuinely pulls (Constitution 21).
+The natural path: plan → repo → generate → quality-check → build → publish → evidence →
+capability-debt → close. If it does those honestly, it succeeded even if nobody reads it.
 
 ## Article 001
 
