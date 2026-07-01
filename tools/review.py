@@ -32,8 +32,19 @@ SYSTEM = (
 )
 
 
+THRESHOLD = (
+    "\n\nApply this PUBLICATION THRESHOLD when deciding severity and verdict: a finding is "
+    "'blocker' or 'major' ONLY if it would genuinely mislead the reader or seriously harm the "
+    "article's correctness. Stylistic, structural, or polish issues are 'minor'. Set VERDICT = "
+    "Revise ONLY if at least one blocker or major finding exists; otherwise VERDICT = Publish and "
+    "list the minors as non-blocking notes."
+)
+
+
 def main(argv: list[str]) -> int:
-    slug = argv[1] if len(argv) > 1 else "recover-before-you-build"
+    args = [a for a in argv[1:] if not a.startswith("--")]
+    threshold = "--threshold" in argv
+    slug = args[0] if args else "recover-before-you-build"
     article = (ROOT / "content" / "posts" / f"{slug}.md").read_text()
     backend = OllamaBackend(ENDPOINT, MODEL, HttpxClient(), SystemClock())
 
@@ -43,17 +54,20 @@ def main(argv: list[str]) -> int:
         "CATEGORY must be one of: Accuracy, Communication, Evidence, Readability, Editorial.\n"
         "SEVERITY must be one of: blocker, major, minor.\n"
         "Do NOT rewrite the article. After the findings, output a final line:\n"
-        "VERDICT: Publish OR Revise OR Reject — one sentence why.\n\n"
-        f"ARTICLE:\n{article}"
+        "VERDICT: Publish OR Revise OR Reject — one sentence why."
+        + (THRESHOLD if threshold else "")
+        + f"\n\nARTICLE:\n{article}"
     )
     req = InferenceRequest(prompt=prompt, purpose="reviewer", system=SYSTEM, max_tokens=1200, deadline_s=180.0)
     out = backend.complete(req).text.strip()
 
-    dest = ROOT / "content" / "reviews" / f"{slug}.selfreview.md"
+    suffix = ".selfreview.threshold.md" if threshold else ".selfreview.md"
+    dest = ROOT / "content" / "reviews" / f"{slug}{suffix}"
     dest.parent.mkdir(parents=True, exist_ok=True)
-    dest.write_text(f"# Spark self-review — {slug}\n\n{out}\n")
+    mode = "threshold" if threshold else "baseline"
+    dest.write_text(f"# Spark self-review ({mode}) — {slug}\n\n{out}\n")
     # Neutral confirmation only — do NOT echo findings (keeps the human review blind).
-    print(f"Spark self-review written to {dest.relative_to(ROOT)} ({len(out.splitlines())} lines).")
+    print(f"Spark self-review [{mode}] written to {dest.relative_to(ROOT)} ({len(out.splitlines())} lines).")
     return 0
 
 
