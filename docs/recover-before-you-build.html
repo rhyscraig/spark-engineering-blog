@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recover Before You Build</title>
+<style>
+ body{max-width:44rem;margin:3rem auto;padding:0 1.2rem;font:17px/1.65 -apple-system,Segoe UI,Roboto,sans-serif;color:#1a1a1a;background:#fafafa}
+ h1{font-size:1.9rem;line-height:1.2} h2{margin-top:2rem} a{color:#c0392b}
+ .meta{color:#777;font-size:.9rem;margin-bottom:2rem} .gen{color:#999;font-size:.8rem;margin-top:3rem;border-top:1px solid #e2e2e2;padding-top:1rem}
+</style></head><body>
+<h1>Recover Before You Build: Making Informed Decisions on Reuse and Development</h1>
+<p>As a software engineer, I&#x27;ve often found myself at a crossroads, weighing the options between reusing existing code and building something new. This article aims to shed light on when it makes sense to recover (reconnect or complete) pre-existing functionality versus building from scratch.</p>
+<h2>The Importance of Recovery Over Building</h2>
+<p>In many cases, the most cost-effective engineering solution is utilizing the code that you already have. Instead of embarking on a new build, consider whether the required capability can be:</p>
+<p>1. <strong>Recovered</strong>: If a module has been disconnected but still functions correctly, it&#x27;s often more efficient to reconnect it rather than building a new one from scratch. For instance, in a recent project, we discovered an abandoned API integration that was no longer being used due to a team change. By reconnecting the integration, we saved significant time and resources compared to building a new one.
+2. <strong>Completed</strong>: If a feature is almost functional but lacks some finishing touches or minor adjustments, it might be more practical to complete it rather than starting from scratch. I&#x27;ve encountered situations where developers have built 80% of a feature only to abandon it due to shifting priorities. In these cases, completing the existing work can save both time and effort in the long run.</p>
+<h2>When is Recovery a False Economy?</h2>
+<p>While recovery can offer significant benefits, there are instances when it may not be the best choice. For example:</p>
+<p>1. <strong>Obsolete Technology</strong>: If the pre-existing code relies on outdated technologies or libraries that are no longer supported or maintained, it may cause long-term issues and maintenance headaches. In such cases, building a new solution using modern tools might be a better approach, even though more effort is required upfront.
+2. <strong>Inefficient Design</strong>: Sometimes, the pre-existing code may have been designed poorly, leading to unnecessary complexity, duplicated functionality, or poor performance. If the cost of refactoring the existing code outweighs the benefits, it might be wiser to build a new solution from scratch.
+3. <strong>Maintainability and Scalability</strong>: If the pre-existing code lacks maintainability or scalability, it could hinder future development and make it challenging to meet evolving business needs. In such cases, building a new solution that incorporates best practices for maintenance and scaling may be the better choice.</p>
+<h2>Differentiating Between &quot;Almost Works&quot; and &quot;Looks Like It Works&quot;</h2>
+<p>Determining whether a pre-existing feature &quot;almost works&quot; or merely &quot;looks like it works&quot; can be challenging. Here are some strategies to help you make an informed decision:</p>
+<p>1. <strong>Code Review</strong>: Thoroughly review the existing code to identify any potential issues, inconsistencies, or inefficiencies that could indicate the feature is not as functional as it seems.
+2. <strong>Unit Testing</strong>: Write unit tests for the pre-existing functionality to confirm its behavior and identify any edge cases or errors that may have been missed during initial development.
+3. <strong>Performance Benchmarking</strong>: Compare the performance of the existing code with a potential new implementation to determine if the old code is significantly slower or less efficient.
+4. <strong>Collaboration</strong>: Involve other team members, such as tech leads or more experienced developers, to provide additional insights and help evaluate the quality and viability of the pre-existing functionality.
+5. <strong>Pilot Deployment</strong>: If possible, deploy the pre-existing feature in a controlled environment (e.g., a test cluster) to confirm its functionality under real-world conditions and identify any unforeseen issues.</p>
+<p>In conclusion, understanding when to recover or build is crucial for making cost-effective engineering decisions. By considering concrete examples, evaluating the trade-offs, and employing strategies like code reviews, unit testing, performance benchmarking, collaboration, and pilot deployment, you can make informed choices that maximize your team&#x27;s efficiency and productivity.</p>
+<p class="gen">Generated by spark-inference (ollama/mistral, local, zero-token) · revised · 2026-07-01</p>
+</body></html>
